@@ -53,8 +53,15 @@ Date:   Tue Mar 27 14:59:17 2018 -0400
 2. Go to SourceTree and select Workspace/History or possibly branches/master. This should show the commit and state history, with similar information. You can refer back to this view throughout the lessons to visualize the current repository state. Use `Cmd-R` (macOS) or `F5` (Windows) to refresh.
 3. Let's look a particular view on history. When you ran `git log` in step 1, you saw different commits because your current workspace state was on a different commit than mine. Run `git log e06f1c6 -n`. How does that view compare the example in step 1?
 
+Exercise 3: Commit Details
+--------------------------
 
-Exercise 3: Changing Workspace State
+1. `35868d5b8ccbcddb63d08b7c7f5f2d0ed7a4ecbb` is a sha1 hash, and uniquely identifies a repository commit and the resulting repository state.
+2. Let's look at at one commit. Run `git show 35868d5b8ccbcddb63d08b7c7f5f2d0ed7a4ecbb`. What information is available? What did you expect to see that was not available?
+3. Git hashes can be abbreviated to the first few characters. Try `git show 35868d5b`. How short can you go?
+4. (Optional) Git commits are stored on disk. Let's look at this one by decompressing the raw information stored on the disk. Run `python -c "import zlib; print(zlib.decompress(open('.git/objects/35/868d5b8ccbcddb63d08b7c7f5f2d0ed7a4ecbb','rb').read()))"`.
+
+Exercise 4: Changing Workspace State
 ------------------------------------
 
 Let's learn about changing the workspace state. The current state of the repository is `HEAD`.
