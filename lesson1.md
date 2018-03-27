@@ -17,7 +17,7 @@ Exercise 1: Configuring Git
 
 Let's configure this Git repository. These settings will not affect any other repository.
 
-1. Run `git config user.name "{your first name} {your favorite animal"` For example, `git config user.name "Alan Wolf"` (Note that the double quotes do matter since there is a space in the line.)
+1. Run `git config user.name "{your first name} {your favorite animal}"` For example, `git config user.name "Alan Wolf"` (Note that the double quotes do matter since there is a space in the line.)
 2. Run `git config user.email {your first name}.{your favorite animal}@{place your animal lives}.com` For example, `git configure user.email alan.wolf@den.com`
 
 Exercise 2: View History
