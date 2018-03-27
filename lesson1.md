@@ -112,11 +112,11 @@ Recap
 
 What do the following commands do:
 
-    git log -n 4
-    git status
-    git diff
-    git diff --cached
-    git commit -m "message"
-    git checkout {hash}
     git add -p
     git checkout -p
+    git checkout {hash}
+    git commit -m "message"
+    git diff
+    git diff --cached
+    git log -n 4
+    git status

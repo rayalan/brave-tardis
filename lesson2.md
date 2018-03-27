@@ -70,8 +70,8 @@ Recap
 
 What do the following commands do?
 
-    git format-patch -1
     git apply
     git cherry-pick
+    git format-patch -1
 
 What do you think `git reset` does?
