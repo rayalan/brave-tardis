@@ -14,10 +14,10 @@ Let's learn about reusing a commit that someone else has already made. Let's sta
 4. Let's change our name and e-mail address. (Remember lesson 1.1?) Run Run `git config user.name "{your first name} {a fearsome animal}"` and `git config user.email {your first name}.{a fearsome animal}@{place your animal hunts}.com`
 5. Run `git cherry-pick {recordedSha1Hash}~` (Yes, the `~` is important. It roughly means "Use the parent commit of the one specified".)
 6. Run `git show` and `git log -n 1`. What did cherry-pick do?
-7. Run `git cherry-pick {recordedSha1Hash}`.
+7. Run `git cherry-pick {recordedSha1Hash}`. Follow with `git commit --allow-empty`
 8. Run `git show` and `git log -n 1`. What did cherry-pick do?
-9. Compare `git show` and `git show {recordedSha1Hash`. How do the commits differ?
-10. Run `git cherry-pick {recordedSha1Hash}` again. What happens?
+9. Compare `git show` and `git show {recordedSha1Hash}`. How do the commits differ?
+10. Run `git cherry-pick {recordedSha1Hash}~` again. What happens? (Discard the change with `git reset`)
 
 Exercise 2: Commit Reuse (via Diff+Apply)
 -----------------------------------------
@@ -25,14 +25,12 @@ Exercise 2: Commit Reuse (via Diff+Apply)
 Let's learn another way to reuse the commits that we've made.
 
 1. Run `git reset --hard origin/master` to reset back to our starting state.
-2. Run `git diff {recordedSha1Hash}~ > patch1.diff`.
-3. Run `git diff {recordedSha1Hash} > patch2.diff`.
-4. Run `git apply patch1.diff`.
+2. Run `git diff HEAD..{recordedSha1Hash}~ > patch1.diff`.
+3. Run `git apply patch1.diff`.
 5. What has changed? (Hint: See `git status` and `git diff` and `git log`)
-6. Run `git apply patch2.diff`. Now what has changed?
-7. Add the changes with `git add -p`.
-8. Commit them with `git commit -m {message}`
-9. Is the commit what you expected?
+6. Add the changes with `git add -p`.
+7. Commit them with `git commit -m {message}`
+8. Is the commit what you expected?
 
 Exercise 3: Commit Sharing -- Publishing
 ----------------------------------------
@@ -41,9 +39,8 @@ Let's publish our commits to the world -- or at least the `#git-training` Slack 
 
 1. Run `git reset --hard origin/master` to reset back to our starting state.
 2. Run `git format-patch -1 {recordedSha1Hash}~`
-3. Run `git format-patch -1 {recordedSha1Hash}`
-4. What files did it generate? What are the contents of those files?
-5. Cut-n-paste the file contents to the Slack channel `#git-training`. (We should have everyone in the meeting added by now; if not, poke a virtual neighbor.)
+3. What files did it generate? What are the contents of those files?
+4. Cut-n-paste the file contents to the Slack channel `#git-training`. (We should have everyone in the meeting added by now; if not, poke a virtual neighbor.)
 
 Exercise 4: Commit Sharing -- Receiving
 ---------------------------------------
@@ -51,8 +48,8 @@ Exercise 4: Commit Sharing -- Receiving
 Let's apply someone else's commit.
 
 1. Go to the Slack channel and find someone else's patch post. (That's what the contents of these files is called -- a `patch`. In Git, a patch is the difference of two repository states, plus some metadata.)
-2. Copy their patch into a file, and save the file, say, as, myFirstPatch.patch.
-3. Run `git apply myFirstPatch.patch`.
+2. Copy their patch into a file, and save the file, say, as, `myFirstPatch.patch`.
+3. Run `git am myFirstPatch.patch`.
 4. What has changed? (Hint: See `git status` and `git diff` and `git log`)
 5. Repeat for a couple more patches. You may need to reset to the initial working state again if the patches collide; we haven't covered conflict resolution yet.
 
@@ -70,6 +67,7 @@ Recap
 
 What do the following commands do?
 
+    git am
     git apply
     git cherry-pick
     git format-patch -1

@@ -51,15 +51,15 @@ Date:   Tue Mar 27 14:59:17 2018 -0400
 ```
 
 2. Go to SourceTree and select Workspace/History or possibly branches/master. This should show the commit and state history, with similar information. You can refer back to this view throughout the lessons to visualize the current repository state. Use `Cmd-R` (macOS) or `F5` (Windows) to refresh.
-3. Let's look a particular view on history. When you ran `git log` in step 1, you saw different commits because your current workspace state was on a different commit than mine. Run `git log e06f1c6 -n`. How does that view compare the example in step 1?
+3. Let's look a particular view on history. When you ran `git log` in step 1, you saw different commits because your current workspace state was on a different commit than mine. Run `git log -n 3 e06f1c6`. How does that view compare the example in step 1?
 
 Exercise 3: Commit Details
 --------------------------
 
-1. `35868d5b8ccbcddb63d08b7c7f5f2d0ed7a4ecbb` is a sha1 hash, and uniquely identifies a repository commit and the resulting repository state.
+1. `35868d5b8ccbcddb63d08b7c7f5f2d0ed7a4ecbb` is a sha1 hash, and uniquely identifies a repository commit and the resulting repository state. Note that `35868d5b8ccbcddb63d08b7c7f5f2d0ed7a4ecbb` should be the second commit in the `git log` we just ran, with the message `Add recovery instructions`.
 2. Let's look at at one commit. Run `git show 35868d5b8ccbcddb63d08b7c7f5f2d0ed7a4ecbb`. What information is available? What did you expect to see that was not available?
 3. Git hashes can be abbreviated to the first few characters. Try `git show 35868d5b`. How short can you go?
-4. (Optional) Git commits are stored on disk. Let's look at this one by decompressing the raw information stored on the disk. Run `python -c "import zlib; print(zlib.decompress(open('.git/objects/35/868d5b8ccbcddb63d08b7c7f5f2d0ed7a4ecbb','rb').read()))"`.
+4. (Optional, if your system has Python support) Git commits are stored on disk. Let's look at this one by decompressing the raw information stored on the disk. Run `python -c "import zlib; print(zlib.decompress(open('.git/objects/35/868d5b8ccbcddb63d08b7c7f5f2d0ed7a4ecbb','rb').read()))"`.
 
 Exercise 4: Changing Workspace State
 ------------------------------------
@@ -79,7 +79,7 @@ Let's learn about making commits.
 
 1. First, we need some file changes. Edit this file (`lesson1.md`) with same changes that you think it should have. Change at least two separate sections of the file.
 2. Run `git status`. This should show you what files have changes that are not part of the current repository state.
-3. Run 'git diff`. This shows what changes exist between the working directory and the current repository state.
+3. Run `git diff`. This shows what changes exist between the working directory and the current repository state.
 4. Run `git diff --cached`. (Hint: It shouldn't show much)
 3. Run `git add -p`. It will ask if you want to `stage a hunk`. Answer at least one question with `y` and one question with `n`. If you don't get both questions, make some more changes. If you answer `y` (yes), the lines will be added to the index. If you answer `n` (no), the lines will be skipped. If you answer `s`, it will split the lines into smaller chunks. We'll find out what adding to the index does in a couple steps.
 4. Run `git status` again. What does it show?
@@ -96,7 +96,7 @@ Let's learn about making commits.
 Exercise 6: Extra tricks with commits (Bonus)
 ---------------------------------------------
 
-1. Make changes to a file in at least two different sections.
+1. Make changes to `lesson1.md` in at least two different sections.
 2. Run `git status` and `git diff`
 3. Run `git checkout -p`. Select `y` for at least one section, and `n` for another.
 2. Run `git status` and `git diff`. What did `git checkout -p` do?
